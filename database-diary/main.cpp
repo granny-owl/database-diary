@@ -37,8 +37,7 @@ int main() {
         } else if (command == "Save") {
             const auto name = FileName(is);
             db.Save(name);
-        }
-        else if (command == "Add") {
+        } else if (command == "Add") {
             const auto date = ParseDate(is);
             const auto event = ParseEvent(is);
             db.Add(date, event);
@@ -47,14 +46,14 @@ int main() {
         } else if (command == "Del") {
             auto condition = ParseCondition(is);
             auto predicate = [condition](const Date& date, const std::string& event) {
-            return condition->Evaluate(date, event);
-        };
-        int count = db.RemoveIf(predicate);
-        std::cout << "Removed " << count << " entries" << std::endl;
+                return condition->Evaluate(date, event);
+            };
+            int count = db.RemoveIf(predicate);
+            std::cout << "Removed " << count << " entries" << std::endl;
         } else if (command == "Find") {
             auto condition = ParseCondition(is);
             auto predicate = [condition](const Date& date, const std::string& event) {
-            return condition->Evaluate(date, event);
+                return condition->Evaluate(date, event);
             };
 
             const auto entries = db.FindIf(predicate);
